@@ -3,11 +3,9 @@ language: php
 php:
   - 8.2
 
-services:
-  - mysql
-
-before_install:
-  - mysql -e 'CREATE DATABASE laravel_test;'
+env:
+  - DB_CONNECTION=sqlite
+    DB_DATABASE=:memory:
 
 install:
   - cp .env.example .env
