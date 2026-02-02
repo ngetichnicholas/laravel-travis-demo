@@ -1,0 +1,21 @@
+language: php
+
+php:
+  - 8.2
+
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE laravel_test;'
+
+install:
+  - cp .env.example .env
+  - composer install --no-interaction --prefer-dist
+  - php artisan key:generate
+
+before_script:
+  - php artisan migrate --force
+
+script:
+  - php artisan test
